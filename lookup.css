@@ -1,0 +1,163 @@
+/* ============================================================
+   Multi-Entity Lookup PCF — Generic
+   Namespace: mel-
+   ============================================================ */
+
+.mel-container {
+  position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Selected tag chips ──────────────────────────────────── */
+.mel-selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.mel-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #e8f0fe;
+  border: 1px solid #4285f4;
+  border-radius: 12px;
+  padding: 3px 9px;
+  font-size: 13px;
+  color: #1a1a2e;
+  max-width: 260px;
+}
+
+.mel-tag-icon { flex-shrink: 0; font-size: 13px; }
+
+.mel-tag-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mel-tag-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.mel-tag-remove:hover { color: #d32f2f; background: rgba(211,47,47,.1); }
+
+/* ── Search input ────────────────────────────────────────── */
+.mel-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mel-input {
+  width: 100%;
+  padding: 7px 36px 7px 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: #fff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color .15s, box-shadow .15s;
+}
+.mel-input::placeholder { color: #aaa; }
+.mel-input:focus {
+  border-color: #0078d4;
+  box-shadow: 0 0 0 2px rgba(0,120,212,.2);
+}
+.mel-input:disabled { background: #f5f5f5; color: #999; cursor: not-allowed; }
+
+.mel-search-icon {
+  position: absolute;
+  right: 10px;
+  color: #aaa;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.mel-spinner {
+  position: absolute;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #ccc;
+  border-top-color: #0078d4;
+  border-radius: 50%;
+  animation: mel-spin .6s linear infinite;
+}
+@keyframes mel-spin { to { transform: rotate(360deg); } }
+
+/* ── Dropdown ────────────────────────────────────────────── */
+.mel-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+  z-index: 9999;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* ── Entity group header ─────────────────────────────────── */
+.mel-group-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: #555;
+  background: #f8f8f8;
+  border-top: 1px solid #ececec;
+  position: sticky;
+  top: 0;
+}
+.mel-group:first-child .mel-group-header { border-top: none; }
+.mel-group-icon { font-size: 13px; }
+
+/* ── Result rows ─────────────────────────────────────────── */
+.mel-result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f5f5f5;
+  transition: background .1s;
+}
+.mel-result-item:last-child { border-bottom: none; }
+.mel-result-item:hover,
+.mel-result-item:focus { background: #f0f6ff; outline: none; }
+
+.mel-result-name     { font-size: 14px; color: #1a1a1a; font-weight: 500; }
+.mel-result-secondary{ font-size: 12px; color: #888; }
+
+/* ── Status rows ─────────────────────────────────────────── */
+.mel-no-results,
+.mel-loading-row {
+  padding: 14px 16px;
+  font-size: 13px;
+  color: #999;
+  text-align: center;
+}

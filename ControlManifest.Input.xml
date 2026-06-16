@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <control namespace="Generic" constructor="MultiEntityLookup"
+           version="1.0.0"
+           display-name-key="Multi-Entity Lookup"
+           description-key="Search across multiple Dataverse entities simultaneously"
+           control-type="standard">
+
+    <!-- Bound field — stores selected records as JSON string -->
+    <property name="boundValue"
+              display-name-key="Bound Value"
+              description-key="Single Line of Text field (max 4000) that stores selected records as JSON"
+              of-type="SingleLine.Text"
+              usage="bound"
+              required="true" />
+
+    <!-- Comma-separated entity logical names e.g. account,contact,lead -->
+    <property name="targetEntities"
+              display-name-key="Target Entities"
+              description-key="Comma-separated entity logical names e.g. account,contact,lead"
+              of-type="SingleLine.Text"
+              usage="input"
+              required="true" />
+
+    <!-- Optional rich JSON config per entity -->
+    <property name="entityConfig"
+              display-name-key="Entity Config (JSON)"
+              description-key='Optional JSON array e.g. [{"entity":"account","primaryField":"name","icon":"Building","displayLabel":"Accounts"}]'
+              of-type="SingleLine.Text"
+              usage="input"
+              required="false" />
+
+    <!-- Max results returned per entity per search -->
+    <property name="maxResultsPerEntity"
+              display-name-key="Max Results Per Entity"
+              description-key="Maximum number of records returned per entity. Default: 5"
+              of-type="Whole.None"
+              usage="input"
+              required="false" />
+
+    <!-- Allow selecting more than one record -->
+    <property name="allowMultiple"
+              display-name-key="Allow Multiple Selection"
+              description-key="Allow user to select more than one record. Default: false"
+              of-type="TwoOptions"
+              usage="input"
+              required="false" />
+
+    <!-- Placeholder text shown in the search input -->
+    <property name="placeholder"
+              display-name-key="Placeholder Text"
+              description-key="Text shown in the search input when empty"
+              of-type="SingleLine.Text"
+              usage="input"
+              required="false" />
+
+    <resources>
+      <code path="index.ts" order="1" />
+      <css path="css/lookup.css" order="1" />
+    </resources>
+  </control>
+</manifest>
